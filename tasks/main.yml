@@ -1,0 +1,10 @@
+---
+# tasks file for cloudstack
+- include: system.yml
+- include: mysql-server.yml
+- include: cloudstack.yml
+- include: nfs.yml
+- include: deploycs.yml
+- include: nfs.yml
+#- include: cloudstackdeploy.yml
+- include: service.yml

@@ -1,0 +1,4 @@
+---
+- hosts: acs
+  roles:
+    - cloudstack

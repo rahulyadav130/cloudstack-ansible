@@ -1,0 +1,5 @@
+[mysql-connectors-community]
+name=MySQL Community connectors
+baseurl=http://repo.mysql.com/yum/mysql-connectors-community/el/$releasever/$basearch/
+enabled=1
+gpgcheck=1

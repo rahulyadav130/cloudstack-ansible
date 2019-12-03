@@ -1,0 +1,23 @@
+---
+- name: installing nfs server
+  yum: name=nfs-utils state=present
+- name: creating nfs direcotry
+  command: mkdir -p {{ nfsprimary }}
+- name: creating seconday directory
+  command: mkdir -p {{ nfssecondary }} 
+- name: Adding nfs conf file
+  lineinfile:
+    path: /etc/exports
+    line: /export *(rw,async,no_root_squash,no_subtree_check)
+    create: yes
+- name: Edit nfs sysconfig/nfs
+  copy: src=nfs dest=/etc/sysconfig/
+- name: edit idmapd.conf
+  lineinfile:
+    path: /etc/idmapd.conf
+    line: Domain = example.com
+    create: yes
+- name: restarting NFS services
+  service: name=nfs state=started
+- name: restarting rpcbind
+  service: name=rpcbind state=started 

@@ -1,0 +1,17 @@
+
+# Apache Cloudstack Installatoin on Centos 7
+ 
+# What all we will install with this roles
+	1. First we will setup system pre-requisit ex: " Hostname, ip, DNS, IPtables, Selinux etc....."
+	2. We will install mysql 5.6.21 version as recommned by the Cloudstack community.
+	3. We will copy the files from file directory in required location.
+	4. we will install cloudstack management server on management host.
+	5. We will install NFS server for primary and secondary storage.
+	6. Once installation is done, then will download system VM template on seconday storage
+	7. We will deploy Zone,pods,cluster...etc...
+
+
+
+Installation setps ----
+	1. Clone the repository from github or download in ansible node
+	2. 

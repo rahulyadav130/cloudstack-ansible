@@ -1,0 +1,7 @@
+---
+- name: download VHD-utils
+  get_url:
+    url: http://download.cloud.com.s3.amazonaws.com/tools/vhd-util
+    dest: /usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver/
+- name: Setup system VM template
+  shell: /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m {{ nfssecondary }} -u http://download.cloudstack.org/systemvm/4.11/systemvmtemplate-4.11.1-xen.vhd.bz2  -h xenserver -F

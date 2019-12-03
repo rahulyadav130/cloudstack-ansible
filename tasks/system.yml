@@ -1,0 +1,30 @@
+---
+- name: install httpd packages
+  yum: 
+    state: present
+    name: 
+      - ntp
+- name:  setup hostname for ACS
+  shell: hostnamectl set-hostname {{ acs1 }}
+- name : setting up global DNS
+  command: echo "4.2.2.2" > /etc/resolv.conf
+- name: "installing python selinux"
+  yum: name={{ item }} state=present
+  with_items:
+   - libselinux-python
+   - libsemanage-python
+   - wget
+   - vim
+   - net-tools
+- name: "disabling Selinux"
+  selinux:
+    state: disabled
+- name: stopping IPtables
+  shell: iptables -F
+- name: changing Selinux
+  shell: setenforce 0
+- name: stopping firewalld
+  service:
+    name: firewalld
+    state: stopped
+    enabled: False

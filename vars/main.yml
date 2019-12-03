@@ -1,0 +1,8 @@
+---
+# vars file for cloudstack
+mysqlpassword: zxvy12345
+acs1: acs1.examaple.com
+acs2: acs2.example.com
+nfsprimary: /export/primary
+nfssecondary: /export/secondary
+nfsdm: domain = example.com

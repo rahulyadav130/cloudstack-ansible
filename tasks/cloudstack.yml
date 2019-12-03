@@ -1,0 +1,21 @@
+---
+- name: install httpd packages
+  yum: 
+    state: present
+    name: 
+      - httpd
+      - ntp
+- name: First Installing Mysql-python-connectory on MGMT 
+  copy: src=mysql-python.repo dest=/etc/yum.repos.d/
+- name: Importing-GPG-key-mysql
+  shell: rpm --import http://repo.mysql.com/RPM-GPG-KEY-mysql
+- name: Installing mysql-python-connector
+  yum: name=mysql-connector-python state=present
+- name: Installation cloudstack 4.11.0
+  copy: src=cloud.repo dest=/etc/yum.repos.d/
+- name: Installing Cloudstackmangem-server
+  yum: name=cloudstack-management state=present
+- name: cloudstack DB setup
+  shell: cloudstack-setup-databases cloud:password@localhost --deploy-as=root:{{ mysqlpassword}}
+- name:  setup cloudstack
+  shell: cloudstack-setup-management

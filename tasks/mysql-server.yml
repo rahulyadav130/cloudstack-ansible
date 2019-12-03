@@ -1,0 +1,28 @@
+---
+- name: install httpd packages
+  yum: 
+    state: present
+    name: 
+      - httpd
+      - ntp
+- name: Installation MySql 5.6.1 repo
+  shell: rpm -Uvh http://s3.download.accelerite.com/packages/mysql-community-release-el7-5.noarch.rpm --force
+- name: Copying  Mysql-Pyhton connector
+  copy: src=mysql-python.repo dest=/etc/yum.repos.d/ 
+- name: Importing-GPG-key-mysql
+  shell: rpm --import http://repo.mysql.com/RPM-GPG-KEY-mysql
+- name: Installing mysql-python-connector
+  yum: name=mysql-connector-python state=present
+- name: Install mysql-server 5.6.21
+  yum: name=mysql-community-server-5.6.21-2.el7 state=present
+- name: Installing mysql-pyhon
+  yum: name=MySQL-python state=present
+#- name: Setup-MySql-password
+#  mysql_user: user="root" password="zxvy12345" host="localhost" login_user="root" login_password=""
+- name: restarting mysql-services   
+  service: name=mysqld state=started enabled=yes
+- name: Copying my.cnf file into server
+  copy: src=my.cnf dest=/etc/
+- name: Changing password 
+  mysql_user: user="root" password="{{ mysqlpassword }}" host="localhost" login_user="root" login_password=""
+  ignore_error: True
